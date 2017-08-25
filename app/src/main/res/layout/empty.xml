@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@android:color/white"
+                android:fitsSystemWindows="true">
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"/>
+
+        <ImageView
+            android:layout_width="100dip"
+            android:layout_height="100dip"
+            android:layout_marginTop="80dip"
+            android:src="@drawable/ic_launcher"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:gravity="center"
+            android:padding="4dip"
+            android:text="电量显示"
+            android:textColor="@android:color/black"
+            android:textSize="18dip"/>
+
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:gravity="center"
+            android:text="V5.0.0"
+            android:textColor="@android:color/black"
+            android:textSize="18dip"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:gravity="center"
+            android:text="@string/str_company"
+            android:textColor="@android:color/black"
+            android:textSize="14dip"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:gravity="center"
+            android:text="@string/str_copyright"
+            android:textColor="@android:color/black"
+            android:textSize="14dip"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:gravity="center"
+            android:text="商务合作：465857721@qq.com"
+            android:textColor="@android:color/black"
+            android:textSize="14dip"/>
+    </LinearLayout>
+</RelativeLayout>
