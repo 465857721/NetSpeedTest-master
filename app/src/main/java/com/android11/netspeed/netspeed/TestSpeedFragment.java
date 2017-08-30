@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.android11.netspeed.R;
 import com.android11.netspeed.bean.Info;
+import com.android11.netspeed.utils.Tools;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -243,7 +244,10 @@ public class TestSpeedFragment extends Fragment {
     }
 
     private boolean isTestTimeOut() {
-        return System.currentTimeMillis() - testtime < 5000;
+        int time = Tools.getSpu(getActivity()).getValueInt("model");
+        if (time < 0)
+            time = 10;
+        return System.currentTimeMillis() - testtime < time * 1000;
     }
 
 

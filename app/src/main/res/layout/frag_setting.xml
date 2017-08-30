@@ -1,0 +1,157 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/md_blue_grey_400"
+                android:fitsSystemWindows="true">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="网速悬浮窗"
+                android:textColor="@color/white"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <ScrollView
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="15dp"
+                    android:text="测速设置"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp"/>
+
+                <include layout="@layout/item_line"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="20dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_modlename"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="标准测速"
+                            android:textColor="@color/text_commen"
+                            android:textSize="16sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_modletime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="标准测速需要耗时10秒左右"
+                            android:textColor="#c5ced9"/>
+                    </LinearLayout>
+
+                    <CheckBox
+                        android:id="@+id/sw_stan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"/>
+                </RelativeLayout>
+                <!--<include layout="@layout/item_line"/>-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="15dp"
+                    android:text="其他"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp"/>
+                <include layout="@layout/item_line"/>
+                <RelativeLayout
+                    android:id="@+id/rl_gocomment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="20dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="评价APP"
+                            android:textColor="@color/text_commen"
+                            android:textSize="16sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="劳烦您十秒给个好评吧"
+                            android:textColor="#c5ced9"/>
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+                <!--<include layout="@layout/item_line"/>-->
+                <RelativeLayout
+                    android:id="@+id/rl_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="20dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="关于我们"
+                            android:textColor="@color/text_commen"
+                            android:textSize="16sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" "
+                            android:textColor="#c5ced9"/>
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</RelativeLayout>

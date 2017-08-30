@@ -33,6 +33,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".netspeed.TestResultActivity"/>
+        <activity android:name=".about.AboutActivity"/>
 
         <service
             android:name=".floatspeed.MyTileService"
