@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dip"
             android:gravity="center"
-            android:text="V5.0.0"
+            android:text="V1.0.0"
             android:textColor="@android:color/black"
             android:textSize="18dip"/>
 

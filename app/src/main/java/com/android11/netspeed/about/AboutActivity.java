@@ -4,9 +4,11 @@ package com.android11.netspeed.about;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.android11.netspeed.R;
 import com.android11.netspeed.main.BaseActivity;
+import com.android11.netspeed.utils.Tools;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -16,6 +18,8 @@ public class AboutActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
+    @Bind(R.id.tv_version)
+    TextView tvVersion;
 
 
     @Override
@@ -44,6 +48,7 @@ public class AboutActivity extends BaseActivity {
                 onBackPressed();
             }
         });
+        tvVersion.setText("V" + Tools.getVerName(this));
 
     }
 }
