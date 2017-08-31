@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="GDTUnionSDK.TBS.4.10.548.min">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/GDTUnionSDK.TBS.4.10.548.min.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
