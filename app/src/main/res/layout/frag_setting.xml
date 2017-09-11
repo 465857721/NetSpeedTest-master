@@ -20,21 +20,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="网速悬浮窗"
+                android:text="设置"
                 android:textColor="@color/white"
                 android:textSize="18sp"/>
         </LinearLayout>
 
         <ScrollView
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -89,7 +90,9 @@
                     android:text="其他"
                     android:textColor="@color/colorPrimary"
                     android:textSize="14sp"/>
+
                 <include layout="@layout/item_line"/>
+
                 <RelativeLayout
                     android:id="@+id/rl_gocomment"
                     android:layout_width="match_parent"
@@ -115,6 +118,36 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="劳烦您十秒给个好评吧"
+                            android:textColor="#c5ced9"/>
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_goqq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="20dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="反馈"
+                            android:textColor="@color/text_commen"
+                            android:textSize="16sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="有什么问题，反馈一下，有问必答"
                             android:textColor="#c5ced9"/>
                     </LinearLayout>
 

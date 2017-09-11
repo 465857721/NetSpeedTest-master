@@ -21,7 +21,6 @@
 
     <LinearLayout
         android:id="@+id/ll_topshow"
-        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -46,8 +45,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:textStyle="bold"
-                android:textColor="#ffffff"/>
+                android:textColor="#ffffff"
+                android:textStyle="bold"/>
         </LinearLayout>
 
 
@@ -65,11 +64,11 @@
                 android:textColor="#ffffff"/>
 
             <TextView
-                android:textStyle="bold"
                 android:id="@+id/now_speed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#ffffff"/>
+                android:textColor="#ffffff"
+                android:textStyle="bold"/>
         </LinearLayout>
 
 
@@ -87,11 +86,11 @@
                 android:textColor="#ffffff"/>
 
             <TextView
-                android:textStyle="bold"
                 android:id="@+id/ave_speed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#ffffff"/>
+                android:textColor="#ffffff"
+                android:textStyle="bold"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -130,16 +129,16 @@
 
     <Button
         android:id="@+id/start_btn"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:background="@color/md_blue_grey_50"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:textSize="16sp"
-        android:textColor="@color/md_blue_grey_900"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
-        android:text="开始测速"/>
+        android:background="@color/colorPrimary"
+        android:paddingLeft="55dp"
+        android:paddingRight="55dp"
+        android:text="开始测速"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
 
 
 </LinearLayout>

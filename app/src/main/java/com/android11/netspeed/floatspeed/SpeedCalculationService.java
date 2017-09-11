@@ -52,12 +52,13 @@ public class SpeedCalculationService extends Service {
     public void onDestroy() {
         super.onDestroy();
         WindowManager.LayoutParams params = (WindowManager.LayoutParams) windowUtil.speedView.getLayoutParams();
+        if (params == null)
+            return;
         SharedPreferencesUtils.putToSpfs(this, INIT_X, params.x);
         SharedPreferencesUtils.putToSpfs(this, INIT_Y, params.y);
         if (windowUtil.isShowing()) {
             windowUtil.closeSpeedView();
             SharedPreferencesUtils.putToSpfs(this, SpeedFloatFragment.IS_SHOWN, false);
         }
-        Log.d("yjw", "service destroy");
     }
 }

@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
+        android:background="@color/md_blue_grey_300"
         app:menu="@menu/navigation"/>
 
 </LinearLayout>
