@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.WindowManager;
 
 import static com.android11.netspeed.floatspeed.SpeedFloatFragment.INIT_X;
@@ -28,16 +27,17 @@ public class SpeedCalculationService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        changed = intent.getBooleanExtra(SpeedFloatFragment.CHANGED, false);
-        if (changed) {
-            windowUtil.onSettingChanged();
-        } else {
-            if (!windowUtil.isShowing()) {
-                windowUtil.showSpeedView();
+        if (intent != null) {
+            changed = intent.getBooleanExtra(SpeedFloatFragment.CHANGED, false);
+            if (changed) {
+                windowUtil.onSettingChanged();
+            } else {
+                if (!windowUtil.isShowing()) {
+                    windowUtil.showSpeedView();
+                }
+                SharedPreferencesUtils.putToSpfs(this, SpeedFloatFragment.IS_SHOWN, true);
             }
-            SharedPreferencesUtils.putToSpfs(this, SpeedFloatFragment.IS_SHOWN, true);
         }
-        //return super.onStartCommand(intent, flags, startId);
         return START_STICKY;
     }
 
