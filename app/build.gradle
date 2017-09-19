@@ -6,8 +6,10 @@ android {
     defaultConfig {
         applicationId "com.android11.netspeed"
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 16
         vectorDrawables.useSupportLibrary = true
+        versionCode 102
+        versionName "1.0.2"
     }
 
     buildTypes {
