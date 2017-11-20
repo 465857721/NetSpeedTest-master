@@ -10,15 +10,15 @@ import com.android11.netspeed.R;
 import com.android11.netspeed.main.BaseActivity;
 import com.android11.netspeed.utils.Tools;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class AboutActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.tv_version)
+    @BindView(R.id.tv_version)
     TextView tvVersion;
 
 
@@ -28,6 +28,7 @@ public class AboutActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_about);
         ButterKnife.bind(this);
+
         initViw();
     }
 

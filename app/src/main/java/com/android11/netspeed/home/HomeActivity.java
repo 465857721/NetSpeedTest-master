@@ -6,25 +6,31 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.android11.netspeed.R;
-import com.android11.netspeed.netspeed.TestSpeedFragment;
+import com.android11.netspeed.floatspeed.SpeedFloatFragment;
 import com.android11.netspeed.main.BaseActivity;
 import com.android11.netspeed.main.adapter.HomeFragmentPagerAdapter;
-import com.android11.netspeed.floatspeed.SpeedFloatFragment;
+import com.android11.netspeed.netspeed.TestSpeedFragment;
 import com.android11.netspeed.setting.SettingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HomeActivity extends BaseActivity {
-    @Bind(R.id.vp)
+    @BindView(R.id.vp)
     ViewPager vp;
-    @Bind(R.id.navigation)
+    @BindView(R.id.navigation)
     BottomNavigationView navigation;
+    @BindView(R.id.content)
+    FrameLayout content;
+    @BindView(R.id.container)
+    LinearLayout container;
 
     private List<Fragment> list_fragment = new ArrayList<>();
 
@@ -55,6 +61,8 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
+
+
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         SpeedFloatFragment f2 = new SpeedFloatFragment();
         TestSpeedFragment f1 = new TestSpeedFragment();

@@ -8,25 +8,28 @@ import android.widget.TextView;
 
 import com.android11.netspeed.R;
 import com.android11.netspeed.main.BaseActivity;
+import com.android11.netspeed.utils.Tools;
 
 import java.text.NumberFormat;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class TestResultActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.tv_big)
+    @BindView(R.id.tv_big)
     TextView tvBig;
-    @Bind(R.id.tv_ava)
+    @BindView(R.id.tv_ava)
     TextView tvAva;
-    @Bind(R.id.tv_u1)
+    @BindView(R.id.tv_u1)
     TextView tvU1;
-    @Bind(R.id.tv_u2)
+    @BindView(R.id.tv_u2)
     TextView tvU2;
+    @BindView(R.id.tv_delay)
+    TextView tvDelay;
 
 
     @Override
@@ -41,6 +44,8 @@ public class TestResultActivity extends BaseActivity {
         tvU1.setText(getStringSpeedUnit(getIntent().getIntExtra("ava", 0)));
         tvU2.setText(getStringSpeedUnit(getIntent().getIntExtra("big", 0)));
         initViw();
+        tvDelay.setText(getIntent().getStringExtra("delay"));
+
     }
 
     @Override

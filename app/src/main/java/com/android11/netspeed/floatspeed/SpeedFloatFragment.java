@@ -1,5 +1,6 @@
 package com.android11.netspeed.floatspeed;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -8,18 +9,17 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.android11.netspeed.R;
+
+import java.lang.reflect.Field;
 
 
 public class SpeedFloatFragment extends Fragment {
@@ -82,13 +82,7 @@ public class SpeedFloatFragment extends Fragment {
         v.findViewById(R.id.bt_gosetting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent localIntent = new Intent();
-                localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-                localIntent.setData(Uri.fromParts("package", getActivity().getPackageName(), null));
-
-                startActivity(localIntent);
+                applyCommonPermission(getActivity());
             }
         });
         bannerContainer = (ViewGroup) v.findViewById(R.id.bv);
@@ -105,6 +99,36 @@ public class SpeedFloatFragment extends Fragment {
         });
     }
 
+    private void applyCommonPermission(Context context) {
+        if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M)) {
+            Intent localIntent = new Intent();
+            localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+            localIntent.setData(Uri.fromParts("package", getActivity().getPackageName(), null));
+
+            startActivity(localIntent);
+        } else {
+            try {
+                Class clazz = Settings.class;
+                Field field = clazz.getDeclaredField("ACTION_MANAGE_OVERLAY_PERMISSION");
+                Intent intent = new Intent(field.get(null).toString());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setData(Uri.parse("package:" + context.getPackageName()));
+                context.startActivity(intent);
+            } catch (Exception e) {
+
+                Intent localIntent = new Intent();
+                localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                localIntent.setData(Uri.fromParts("package", getActivity().getPackageName(), null));
+
+                startActivity(localIntent);
+            }
+        }
+
+    }
 
     public boolean checkDrawOverlayPermission() {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.M) {

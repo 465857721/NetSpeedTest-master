@@ -1,6 +1,7 @@
 package com.android11.netspeed.netspeed;
 
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -22,34 +23,39 @@ import com.android11.netspeed.R;
 import com.android11.netspeed.bean.Info;
 import com.android11.netspeed.utils.Tools;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.NumberFormat;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 import static android.content.Context.CONNECTIVITY_SERVICE;
 
 
 public class TestSpeedFragment extends Fragment {
-    @Bind(R.id.connection_type)
+    @BindView(R.id.connection_type)
     TextView tv_type;
-    @Bind(R.id.now_speed)
+    @BindView(R.id.now_speed)
     TextView tv_now_speed;
-    @Bind(R.id.ave_speed)
+    @BindView(R.id.ave_speed)
     TextView tv_ave_speed;
-    @Bind(R.id.ll_topshow)
+    @BindView(R.id.ll_topshow)
     LinearLayout llTopshow;
-    @Bind(R.id.tester)
+    @BindView(R.id.tester)
     ImageView tester;
-    @Bind(R.id.needle)
+    @BindView(R.id.needle)
     ImageView needle;
-    @Bind(R.id.heart)
+    @BindView(R.id.heart)
     ImageView heart;
-    @Bind(R.id.start_btn)
+    @BindView(R.id.start_btn)
     Button btn;
+
+    Unbinder unbinder;
 
     private Info info;
     private byte[] imageBytes;
@@ -60,7 +66,8 @@ public class TestSpeedFragment extends Fragment {
     private int avg = 0;
 
     private long testtime;
-
+    private String delayResult = "";
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
 
         @Override
@@ -81,6 +88,7 @@ public class TestSpeedFragment extends Fragment {
                 Intent go = new Intent(getActivity(), TestResultActivity.class);
                 go.putExtra("ava", avg);
                 go.putExtra("big", bigest);
+                go.putExtra("delay", delayResult);
                 getActivity().startActivity(go);
             }
         }
@@ -92,7 +100,7 @@ public class TestSpeedFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.frag_netspeed, null);
-        ButterKnife.bind(this, v);
+        unbinder = ButterKnife.bind(this, v);
         info = new Info();
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -120,8 +128,10 @@ public class TestSpeedFragment extends Fragment {
                         .start();
                 new DownloadThread().start();
                 new GetInfoThread().start();
+                new DelayThread().start();
             }
         });
+
 
         return v;
     }
@@ -129,7 +139,8 @@ public class TestSpeedFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+        unbinder.unbind();
+
     }
 
     class DownloadThread extends Thread {
@@ -211,6 +222,15 @@ public class TestSpeedFragment extends Fragment {
 
     }
 
+    class DelayThread extends Thread {
+
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+            testPing();
+        }
+
+    }
 
     @Override
     public void onResume() {
@@ -253,7 +273,7 @@ public class TestSpeedFragment extends Fragment {
 
     private String getStringSpeed(int downloadSpeed) {
 
-        NumberFormat df = java.text.NumberFormat.getNumberInstance();
+        NumberFormat df = NumberFormat.getNumberInstance();
         df.setMaximumFractionDigits(2);
         String downSpeed;
         if (downloadSpeed > 1024 * 1024) {
@@ -266,5 +286,36 @@ public class TestSpeedFragment extends Fragment {
             downSpeed = df.format(downloadSpeed) + "B/S";
         }
         return downSpeed;
+    }
+
+    private void testPing() {
+        try {
+            String lost = new String();
+            String delay = new String();
+            Process p = Runtime.getRuntime().exec("ping -c 4 " + "www.baidu.com");
+            BufferedReader buf = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String str = new String();
+            while ((str = buf.readLine()) != null) {
+                if (str.contains("packet loss")) {
+                    int i = str.indexOf("received");
+                    int j = str.indexOf("%");
+                    System.out.println("丢包率:" + str.substring(i + 10, j + 1));
+//                  System.out.println("丢包率:"+str.substring(j-3, j+1));
+                    lost = str.substring(i + 10, j + 1);
+                }
+                if (str.contains("avg")) {
+                    int i = str.indexOf("/", 20);
+                    int j = str.indexOf(".", i);
+                    System.out.println("延迟:" + str.substring(i + 1, j));
+                    delay = str.substring(i + 1, j);
+//                    delay = delay + "ms";
+                    delayResult = delay;
+                }
+
+            }
+        } catch (Exception e) {
+
+        }
+
     }
 }

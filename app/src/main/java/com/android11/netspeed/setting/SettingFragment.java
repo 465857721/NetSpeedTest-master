@@ -16,32 +16,37 @@ import com.android11.netspeed.about.AboutActivity;
 import com.android11.netspeed.main.BaseFragment;
 import com.android11.netspeed.utils.Tools;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 
 public class SettingFragment extends BaseFragment {
 
-    @Bind(R.id.sw_stan)
+    @BindView(R.id.sw_stan)
     CheckBox swStan;
-    @Bind(R.id.tv_modlename)
+    @BindView(R.id.tv_modlename)
     TextView tvModlename;
-    @Bind(R.id.tv_modletime)
+    @BindView(R.id.tv_modletime)
     TextView tvModletime;
-    @Bind(R.id.rl_gocomment)
+    @BindView(R.id.rl_gocomment)
     RelativeLayout rlGocomment;
-    @Bind(R.id.rl_about)
+    @BindView(R.id.rl_about)
     RelativeLayout rlAbout;
+    @BindView(R.id.rl_goqq)
+    RelativeLayout rlGoqq;
+    Unbinder unbinder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.frag_setting, null);
-        ButterKnife.bind(this, v);
+        unbinder = ButterKnife.bind(this, v);
         // 5秒为快速模式
         initView();
+
 
         return v;
     }
@@ -76,7 +81,8 @@ public class SettingFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+        unbinder.unbind();
+
     }
 
     @OnClick({R.id.rl_gocomment, R.id.rl_about, R.id.rl_goqq})
