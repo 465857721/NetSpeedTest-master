@@ -93,6 +93,7 @@ public class HomeActivity extends BaseActivity {
 
             }
         });
+        vp.setOffscreenPageLimit(3);
     }
 
 }
