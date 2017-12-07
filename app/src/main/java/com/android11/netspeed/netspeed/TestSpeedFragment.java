@@ -73,6 +73,8 @@ public class TestSpeedFragment extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             // TODO Auto-generated method stub
+            if (tv_now_speed == null || tv_ave_speed == null)
+                return;
             if (msg.what == 0x123) {
                 tv_now_speed.setText(getStringSpeed(msg.arg1));
                 tv_ave_speed.setText(getStringSpeed(msg.arg2));
