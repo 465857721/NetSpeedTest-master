@@ -10,6 +10,10 @@
     <string name="title_notifications">设置</string>
 
     <string name="str_copyright">2017 All Rights Reserved</string>
-    <string name="str_company">周康（个人）</string>
-
+    <string name="str_company"> </string>
+    <string-array name="channel">
+        <item>ali</item>
+        <item>vivo</item>
+        <item>oppo</item>
+    </string-array>
 </resources>

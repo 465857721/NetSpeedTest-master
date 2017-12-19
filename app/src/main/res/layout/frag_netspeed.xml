@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/md_blue_grey_400"
-              android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_blue_grey_400"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="网速测试"
             android:textColor="@color/white"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -38,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:text="连接方式"
-                android:textColor="#ffffff"/>
+                android:textColor="#ffffff" />
 
             <TextView
                 android:id="@+id/connection_type"
@@ -46,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:textColor="#ffffff"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
 
@@ -61,14 +62,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="当前速度"
-                android:textColor="#ffffff"/>
+                android:textColor="#ffffff" />
 
             <TextView
                 android:id="@+id/now_speed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
 
@@ -83,29 +84,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="平均速度"
-                android:textColor="#ffffff"/>
+                android:textColor="#ffffff" />
 
             <TextView
                 android:id="@+id/ave_speed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:id="@+id/tv_wifiname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        tools:text="xiaomiwifi" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="50dp">
+        android:paddingTop="40dp">
 
         <ImageView
             android:id="@+id/tester"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/bg_tester"/>
+            android:src="@drawable/bg_tester" />
 
         <ImageView
             android:id="@+id/needle"
@@ -115,7 +126,7 @@
             android:layout_alignRight="@+id/heart"
             android:layout_marginBottom="12dp"
             android:layout_marginRight="13dp"
-            android:src="@drawable/ic_needle"/>
+            android:src="@drawable/ic_needle" />
 
         <ImageView
             android:id="@+id/heart"
@@ -124,7 +135,7 @@
             android:layout_alignBottom="@id/tester"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="11dp"
-            android:src="@drawable/ic_heart"/>
+            android:src="@drawable/ic_heart" />
     </RelativeLayout>
 
     <Button
@@ -138,7 +149,7 @@
         android:paddingRight="55dp"
         android:text="开始测速"
         android:textColor="@color/white"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
 
 </LinearLayout>

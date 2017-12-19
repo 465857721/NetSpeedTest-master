@@ -2,9 +2,12 @@ package com.android11.netspeed.netspeed;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -56,6 +59,8 @@ public class TestSpeedFragment extends Fragment {
     Button btn;
 
     Unbinder unbinder;
+    @BindView(R.id.tv_wifiname)
+    TextView tvWifiname;
 
     private Info info;
     private byte[] imageBytes;
@@ -103,7 +108,17 @@ public class TestSpeedFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.frag_netspeed, null);
         unbinder = ButterKnife.bind(this, v);
+
+        WifiManager wifiMgr = (WifiManager) getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+//        int wifiState = wifiMgr.getWifiState();
+        WifiInfo winfo = wifiMgr.getConnectionInfo();
+        String wifiId = winfo != null ? winfo.getSSID() : null;
+        if (wifiId != null && !wifiId.contains("unknown ssid")) {
+            tvWifiname.setText(wifiId + " 已连接");
+        }
+
         info = new Info();
+
 
         btn.setOnClickListener(new View.OnClickListener() {
 
@@ -112,6 +127,11 @@ public class TestSpeedFragment extends Fragment {
                 // TODO Auto-generated method stub
                 ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+                if(networkInfo==null){
+                    Tools.toastInBottom(getContext(),"当前无网络连接");
+                    return;
+                }
+
                 tv_type.setText(networkInfo.getTypeName());
                 testtime = System.currentTimeMillis();
 

@@ -12,15 +12,16 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android11.netspeed.BuildConfig;
 import com.android11.netspeed.R;
 import com.android11.netspeed.home.HomeActivity;
+import com.android11.netspeed.utils.Tools;
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
-
+import com.qq.e.comm.util.AdError;
 
 
 public class LoadingActivity extends BaseActivity implements SplashADListener {
-    private long timelong = 4000;
     private SplashAD splashAD;
     private ViewGroup container;
     private TextView skipView;
@@ -36,23 +37,22 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_loading);
 
-        container = (ViewGroup) this.findViewById(R.id.splash_container);
-        skipView = (TextView) findViewById(R.id.skip_view);
-        splashHolder = (ImageView) findViewById(R.id.splash_holder);
+        container = findViewById(R.id.splash_container);
+        skipView = findViewById(R.id.skip_view);
+        splashHolder = findViewById(R.id.splash_holder);
 
-        fetchSplashAD(this, container, skipView, "1101189414", "9060124323597588", this, 5000);
+        String[] cArray = getResources().getStringArray(R.array.channel);
+        for (String c : cArray) {
+            String channel = Tools.getAppMetaData(this, "UMENG_CHANNEL");
+            if (c.equals(channel)
+                    && (System.currentTimeMillis() - Long.valueOf(BuildConfig.releaseTime) < 3 * 24 * 60 * 60 * 1000)) {
+                next();
+                return;
+            }
+        }
 
 
-//        Timer time = new Timer();
-//        TimerTask tk = new TimerTask() {
-//            @Override
-//            public void run() {
-//                // TODO Auto-generated method stub
-//                gotoActivity();
-//                finish();
-//            }
-//        };
-//        time.schedule(tk, timelong);
+        fetchSplashAD(this, container, skipView, "1106433744", "4060825855984438", this, 5000);
     }
 
     @Override
@@ -110,8 +110,8 @@ public class LoadingActivity extends BaseActivity implements SplashADListener {
     }
 
     @Override
-    public void onNoAD(int arg0) {
-        Log.i("AD_DEMO", "LoadSplashADFail,ecode=" + arg0);
+    public void onNoAD(AdError adError) {
+        Log.i("AD_DEMO", "onNoAD");
         next();
     }
 
