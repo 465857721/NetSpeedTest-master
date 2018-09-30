@@ -40,15 +40,15 @@
         <activity android:name=".netspeed.TestResultActivity"/>
         <activity android:name=".about.AboutActivity"/>
 
-        <service
-            android:name=".floatspeed.MyTileService"
+        <!--<service-->
+            <!--android:name=".floatspeed.MyTileService"-->
 
-            android:label="网速悬浮窗"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE"/>
-            </intent-filter>
-        </service>
+            <!--android:label="网速悬浮窗"-->
+            <!--android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.service.quicksettings.action.QS_TILE"/>-->
+            <!--</intent-filter>-->
+        <!--</service>-->
 
         <service android:name=".floatspeed.SpeedCalculationService">
         </service>

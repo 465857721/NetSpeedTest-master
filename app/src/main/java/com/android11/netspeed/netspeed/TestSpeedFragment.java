@@ -29,9 +29,13 @@ import com.android11.netspeed.utils.Tools;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.NumberFormat;
+import java.util.Enumeration;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -114,7 +118,7 @@ public class TestSpeedFragment extends Fragment {
         WifiInfo winfo = wifiMgr.getConnectionInfo();
         String wifiId = winfo != null ? winfo.getSSID() : null;
         if (wifiId != null && !wifiId.contains("unknown ssid")) {
-            tvWifiname.setText(wifiId + " 已连接");
+            tvWifiname.setText(wifiId + " 已连接\n" + getIp());
         }
 
         info = new Info();
@@ -127,8 +131,8 @@ public class TestSpeedFragment extends Fragment {
                 // TODO Auto-generated method stub
                 ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-                if(networkInfo==null){
-                    Tools.toastInBottom(getContext(),"当前无网络连接");
+                if (networkInfo == null) {
+                    Tools.toastInBottom(getContext(), "当前无网络连接");
                     return;
                 }
 
@@ -338,6 +342,42 @@ public class TestSpeedFragment extends Fragment {
         } catch (Exception e) {
 
         }
+
+    }
+
+    public String getIp() {
+
+        WifiManager wifiManager = (WifiManager) getContext().getApplicationContext()
+                .getSystemService(Context.WIFI_SERVICE);
+
+        if (wifiManager.isWifiEnabled()
+                && wifiManager.getWifiState() == wifiManager.WIFI_STATE_ENABLED) {
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+            if (wifiInfo != null) {
+                int ipAddress = wifiInfo.getIpAddress();
+                if (ipAddress == 0)
+                    return "";
+                return ((ipAddress & 0xff) + "." + (ipAddress >> 8 & 0xff)
+                        + "." + (ipAddress >> 16 & 0xff) + "." + (ipAddress >> 24 & 0xff));
+            }
+        }
+
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface
+                    .getNetworkInterfaces(); en.hasMoreElements(); ) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf
+                        .getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress()) {
+                        return inetAddress.getHostAddress().toString();
+                    }
+                }
+            }
+        } catch (SocketException ex) {
+            ex.printStackTrace();
+        }
+        return "";
 
     }
 }
